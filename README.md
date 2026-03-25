@@ -13,7 +13,7 @@ pip install pandas openpyxl
 ### 2. Input files
 
 - MAGMA output file (.genes.out)
-- MitoCarta 3.0 file (.xlsx)
+- MitoCarta 3.0 file (.xls)
 
 ### 3. Configure paths
 
