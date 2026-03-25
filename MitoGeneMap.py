@@ -1,12 +1,12 @@
 import pandas as pd
 
-    #Carrega dados df_MAGMA    
+    #Loads df_MAGMA data 
 def load_magma(filepath: str) -> pd.DataFrame:
     df = pd.read_csv(filepath, sep=r"\s+")
     df["GENE"] = df["GENE"].astype(str)
     return df
 
-    #Carrega dados df_Mitocarta 
+    #Load data df_Mitocarta
 def load_mitocarta(filepath: str, sheet: str) -> pd.DataFrame:
     df = pd.read_excel(filepath, sheet_name=sheet)
     df["HumanGeneID"] = df["HumanGeneID"].astype(str)
@@ -43,12 +43,12 @@ def compute_statistics(magma_df: pd.DataFrame, present_df: pd.DataFrame, absent_
         "pct_not_found": (not_found / total) * 100
     }
 
-    #função salva resultados .csv
+    #Function saves the results as a .csv file.
 def save_outputs(present_df: pd.DataFrame, absent_df: pd.DataFrame):
     present_df.to_csv("MAGMA_genes_in_MitoCarta_with_SYMBOL.tsv", sep="\t", index=False)
     absent_df.to_csv("MAGMA_genes_not_in_MitoCarta.tsv", sep="\t", index=False)
 
-    #Função statistics
+    #Function create and save statistics file
 def save_statistics(stats: dict):
     with open("MAGMA_MitoCarta_statistics.txt", "w") as f:
         f.write("Comparison statistics ===\n\n")
@@ -61,7 +61,7 @@ def save_statistics(stats: dict):
 
 
 def main():
-    #Insira os dados a serem analisados:
+    #Enter the data to be analyzed:
     magma_file = r"D:\Doutorado\Mitogenomas\GWAS\ResultsAnalysisV37\MAGMA_V37_GBA_VelocidadeMarcha.genes.out"
     mitocarta_file = r"D:\Doutorado\Mitogenomas\GWAS\ResultsAnalysisV37\Human.MitoCarta3.0.xls"
     mitocarta_sheet = "A Human MitoCarta3.0"
